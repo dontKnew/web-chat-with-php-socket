@@ -59,23 +59,7 @@
     }
   }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> Chat-Aplication </title>
-  <!-- Font Awesome -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
-  <!-- MDB -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.3.0/mdb.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="./public/css/style.css">
-  <link rel="stylesheet" href="./public/css/font-awesome.min.css">
-</head>
-<body>
+<?php include('./include/header.php'); ?>
   <section style="background-color: #eee;">
     <div class="container py-5">
 
@@ -85,9 +69,9 @@
           <div class="card" id="chat2">
             <div class="card-header d-flex justify-content-between align-items-center p-3">
               <h5 class="mb-0">Registraton Form</h5>
-              <a href="./"><button type="button" class="btn btn-primary btn-sm" data-mdb-ripple-color="dark">Back to Login</button></a>
-            </div>  
-            </div>
+              <button type="button" class="btn btn-primary btn-sm" data-mdb-ripple-color="dark">Let's Chat
+                App</button>
+            </div>   
 
             <div class="card-body">
               <?php if(isset($error_message)) {echo "<div class='alert alert-warning' alert='role'>".$error_message."</div>";}?>
@@ -118,12 +102,6 @@
         </div>
       </div>
     </div>
-
     </div>
   </section>
-  <!-- script -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.3.0/mdb.min.js"></script>
-  <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.js"></script>
-</body>
-
-</html>
+<?php include('include/footer.php') ?>
