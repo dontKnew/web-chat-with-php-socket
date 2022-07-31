@@ -30,14 +30,11 @@ Password : 1234
 
 ## Demo Pictures
 
-<img src="https://github.com/dontKnew/web-chat-with-php-socket/tree/master/public/image/screenshot/login.png"/>
-<img src="https://github.com/dontKnew/web-chat-with-php-socket/tree/master/public/image/screenshot/register.png"/>
-<img src="https://github.com/dontKnew/web-chat-with-php-socket/tree/master/public/image/screenshot/chatroom.png"/>
-<!-- <img src="https://github.com/dontKnew/web-chat-with-php-socket/tree/master/public/image/screenshot/reset-pass.png"/>
-<img src="https://github.com/dontKnew/web-chat-with-php-socket/tree/master/public/image/screenshot/dashboard.png"/>
-<img src="https://github.com/dontKnew/web-chat-with-php-socket/tree/master/public/image/screenshot/changepass.png"/>
-<img src="https://github.com/dontKnew/web-chat-with-php-socket/tree/master/public/image/screenshot/expense.png"/>
-<img src="https://github.com/dontKnew/web-chat-with-php-socket/tree/master/public/image/screenshot/profile.png"/> -->
+<img src="https://github.com/dontKnew/web-chat-with-php-socket/blob/master/public/image/screenshot/login.png"/>
+<img src="https://github.com/dontKnew/web-chat-with-php-socket/blob/master/public/image/screenshot/register.png"/>
+<img src="https://github.com/dontKnew/web-chat-with-php-socket/blob/master/public/image/screenshot/changepassword.png"/>
+<img src="https://github.com/dontKnew/web-chat-with-php-socket/blob/master/public/image/screenshot/forget.png"/>
+<img src="https://github.com/dontKnew/web-chat-with-php-socket/blob/master/public/image/screenshot/chatroom.png"/>
 
 
 ### For More details email to israfil123.sa@gmail.com or contact us
