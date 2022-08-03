@@ -20,14 +20,14 @@
     $user_object->setUserPassword($password);
     $user_object->setUserActivation("Disabled");
     // $user_object->setUserProfile($user_object->make_avatar(strtoupper($name[0])));
-    $user_object->setUserProfile("./public/images/avtar.webp");
+    $user_object->setUserProfile("./public/image/avtar.webp");
     $user_object->setUserVerificationCode(md5(uniqid()));
     $user_data = $user_object->get_user_data_by_email();
     if(is_array($user_data) && count($user_data) > 0)
     {
         $error_message = 'This Email address is already registered';
     }else {
-      if($user_object->save_data()){
+      // if($user_object->save_data()){
           $mail = new Mailer;
           $mail->smtp = "smtp.gmail.com";
           $mail->fromEmail = "YourGmail";
@@ -46,16 +46,17 @@
           $mail->bodyHTML = $msg;
           $mail->bodyText = $msg;
           if($mail->sendMail()==200){
+            $user_object->save_data();
             $success_message = 'Verification Email sent to ' . $user_object->getUserEmail() . ', so before login first verify your email';
           }else if($mail->sendMail()==501) {
             $error_message = 'Verification Email could not sent, Please try again later';
           }else {
              $error_message = $mail->sendMail(); 
           }
-      }
-      else{
-          $error_message = 'Registration failed';
-      }
+      // }
+      // else{
+      //     $error_message = 'Registration failed';
+      // }
     }
   }
 ?>

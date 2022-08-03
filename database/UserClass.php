@@ -249,13 +249,45 @@ class User
 		return $user_data;
 	}
 
-	function upload_image($user_profile)
+	function get_user_data_by_id_limit()
 	{
-		$extension = explode('.', $user_profile['name']);
-		$new_name = rand() . '.' . $extension[1];
-		$destination = __DIR__.'public/images/' . $new_name;
-		move_uploaded_file($user_profile['tmp_name'], $destination);
-		return $destination;
+		$query = "
+		SELECT * FROM users 
+		WHERE user_id = :user_id LIMIT 3";
+
+		$statement = $this->connect->prepare($query);
+
+		$statement->bindParam(':user_id', $this->user_id);
+
+		try
+		{
+			if($statement->execute())
+			{
+				$user_data = $statement->fetch(PDO::FETCH_ASSOC);
+			}
+			else
+			{
+				$user_data = array();
+			}
+		}
+		catch (Exception $error)
+		{
+			echo $error->getMessage();
+		}
+		return $user_data;
+	}
+
+	function move_image($user_profile)
+	{
+		try {
+			$extension = explode('.', $user_profile['name']);
+			$new_name = $this->getUserName() . rand() . '.' . $extension[1];
+			$destination = './public/image/users/' . $new_name;
+			move_uploaded_file($user_profile['tmp_name'], $destination);
+			return $destination;
+		}catch(Exception $e){
+			return $e;
+		}
 	}
 
 	function update_data()
@@ -291,6 +323,14 @@ class User
 		}
 	}
 
+	// function upload_image($user_profile){
+	// 	$extension = explode('.', $user_profile['name']);
+	// 	$new_name = rand() . '.' . $extension[1];
+	// 	$destination = 'images/' . $new_name;
+	// 	move_uploaded_file($user_profile['tmp_name'], $destination);
+	// 	return $destination;
+	// }
+
 	function get_user_all_data()
 	{
 		$query = "
@@ -303,6 +343,7 @@ class User
 
 		return $data;
 	}
+	
 	
 }
 ?>
