@@ -10,12 +10,13 @@
 3. Chat Dashbord 
 4. Group Chat 
 5. forget password with phpmailer
-    => Coming Soon
-        1. User to User chat 
-        2. user message encriyption 
-        3. double tick mark
-        4. user list online status
-        5. User profile
+6. User to User chat
+7. View of any user Profile
+      =>
+        1. user message encriyption 
+        2. double tick mark
+        3. user list online status
+
 
 ## Project Setup : 
 1. create database in the name of => socket-chat-app2
