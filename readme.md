@@ -36,6 +36,8 @@ Password : 1234
 <img src="https://github.com/dontKnew/web-chat-with-php-socket/blob/master/public/image/screenshot/changepassword.png"/>
 <img src="https://github.com/dontKnew/web-chat-with-php-socket/blob/master/public/image/screenshot/forget.png"/>
 <img src="https://github.com/dontKnew/web-chat-with-php-socket/blob/master/public/image/screenshot/chatroom.png"/>
+<img src="https://github.com/dontKnew/web-chat-with-php-socket/blob/master/public/image/screenshot/userprofile.png"/>
+<img src="https://github.com/dontKnew/web-chat-with-php-socket/blob/master/public/image/screenshot/personalchat.png"/>
 
 
 ### For More details email to israfil123.sa@gmail.com or contact us
