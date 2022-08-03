@@ -35,7 +35,7 @@ Password : 1234
 <img src="https://github.com/dontKnew/web-chat-with-php-socket/blob/master/public/image/screenshot/register.png"/>
 <img src="https://github.com/dontKnew/web-chat-with-php-socket/blob/master/public/image/screenshot/changepassword.png"/>
 <img src="https://github.com/dontKnew/web-chat-with-php-socket/blob/master/public/image/screenshot/forget.png"/>
-<img src="https://github.com/dontKnew/web-chat-with-php-socket/blob/master/public/image/screenshot/chatroom.png"/>
+<img src="https://github.com/dontKnew/web-chat-with-php-socket/blob/master/public/image/screenshot/chatroom1.png"/>
 <img src="https://github.com/dontKnew/web-chat-with-php-socket/blob/master/public/image/screenshot/userprofile.png"/>
 <img src="https://github.com/dontKnew/web-chat-with-php-socket/blob/master/public/image/screenshot/personalchat.png"/>
 
