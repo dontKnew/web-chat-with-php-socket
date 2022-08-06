@@ -1,32 +1,31 @@
 <?php
-    session_start();
     if (!isset($_SESSION['isLogged'])) {
-        header('location:./');
+        header('location:../login/');
     }
     $id = null; 
     $user_data = null;
     if(isset($_GET['id'])){
         $id = trim($_GET['id']);
         if($id==$_SESSION['user_data']['user_id']){
-            header("location:profile.php");
+            header("location:../profile/");
         }else{
-            require_once './database/UserClass.php';
+            require_once '../database/UserClass.php';
             $user_object = new User;
             $user_object->setUserId($id);
             if($user_data = $user_object->get_user_data_by_id()){
                   
             }else {
-                header("location:./");
+                header("location:../login");
             }
         }
     }else {
-        header("location:./");
+        header("location:../login");
     }
 
-    require_once 'database/converter.php';
+    require_once '../database/converter.php';
     $converter = new Converter;
 ?>
-<?php include('./include/header.php'); ?>
+<?php include('../include/header.php'); ?>
 <section style="background-color: #eee;">
     <div class="container py-2">
         <div class="row d-flex justify-content-center">
@@ -70,7 +69,7 @@
                     </div>
                     <!-- Submit button -->
                     <div class="mb-4">
-                        <a href="./secureChat.php?to_user_id=<?php echo $user_data['user_id'];?>" class="btn btn-success btn-block">Chat Now</a><br>
+                        <a href="../personal/?<?php echo $user_data['user_id'];?>" class="btn btn-success btn-block">Chat Now</a><br>
                     </div>
                     </form>
                 </div>
@@ -80,4 +79,4 @@
     </div>
     </div>
 </section>
-<?php include('./include/footer.php') ?>
+<?php include('../include/footer.php') ?>

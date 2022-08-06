@@ -1,5 +1,7 @@
 <?php
-
+if(!session_start()){
+	session_start();
+}
 class User
 {
 	private $user_id;
@@ -11,6 +13,7 @@ class User
 	private $user_timestamp;
 	private $user_verification_code;
 	private $user_activation;
+	private $last_login;
 	public $connect;
 
 	public function __construct()
@@ -27,10 +30,22 @@ class User
 		$this->user_id = $user_id;
 	}
 
+	function getLastLogin()
+	{
+		return $this->last_login;
+	}
+
+	function setLastLogin($last_login)
+	{
+		$this->last_login = $last_login;
+	}
+
 	function getUserId()
 	{
 		return $this->user_id;
 	}
+
+	
 
 	function setUserName($user_name)
 	{
@@ -40,6 +55,16 @@ class User
 	function getUserName()
 	{
 		return $this->user_name;
+	}
+
+	function setUserStatus($user_status)
+	{
+		$this->user_status = $user_status;
+	}
+
+	function getUserStatus()
+	{
+		$this->user_status;
 	}
 
 	function setUserEmail($user_email)
@@ -96,20 +121,14 @@ class User
 	{
 		return $this->user_activation;
 	}
-
-	function setUserConnectionId($user_connection_id)
+	function getUserLastLoginTime()
 	{
-		$this->user_connection_id = $user_connection_id;
-	}
-
-	function getUserConnectionId()
-	{
-		return $this->user_connection_id;
+		return $this->last_login;
 	}
 
 	function make_avatar($character)
 	{
-	    $path = __DIR__."/public/image/".$character.time() . ".png";
+	    $path = __DIR__."../assets/image/".$character.time() . ".png";
 		$image = imagecreate(200, 200);
 		$red = rand(0, 255);
 		$green = rand(0, 255);
@@ -117,7 +136,7 @@ class User
 	    imagecolorallocate($image, $red, $green, $blue);  
 	    $textcolor = imagecolorallocate($image, 255,255,255);
 
-	    $font = __DIR__.'/public/font/arial.TTF';
+	    $font = __DIR__.'../assets/font/arial.TTF';
 	    imagettftext($image, 100, 0, 55, 150, $textcolor, $font, $character);
 	    imagepng($image, $path);
 	    imagedestroy($image);
@@ -282,7 +301,7 @@ class User
 		try {
 			$extension = explode('.', $user_profile['name']);
 			$new_name = $this->getUserName() . rand() . '.' . $extension[1];
-			$destination = './public/image/users/' . $new_name;
+			$destination = '../assets/image/users/' . $new_name;
 			move_uploaded_file($user_profile['tmp_name'], $destination);
 			return $destination;
 		}catch(Exception $e){
@@ -297,20 +316,17 @@ class User
 		SET user_name = :user_name, 
 		user_email = :user_email, 
 		user_password = :user_password, 
-		user_profile = :user_profile  
+		user_profile = :user_profile,
+		user_verification_code = :user_verification_code    
 		WHERE user_id = :user_id
 		";
 
 		$statement = $this->connect->prepare($query);
-
 		$statement->bindParam(':user_name', $this->user_name);
-
 		$statement->bindParam(':user_email', $this->user_email);
-
 		$statement->bindParam(':user_password', $this->user_password);
-
 		$statement->bindParam(':user_profile', $this->user_profile);
-
+		$statement->bindParam(':user_verification_code', $this->user_verification_code);
 		$statement->bindParam(':user_id', $this->user_id);
 
 		if($statement->execute())
@@ -323,19 +339,11 @@ class User
 		}
 	}
 
-	// function upload_image($user_profile){
-	// 	$extension = explode('.', $user_profile['name']);
-	// 	$new_name = rand() . '.' . $extension[1];
-	// 	$destination = 'images/' . $new_name;
-	// 	move_uploaded_file($user_profile['tmp_name'], $destination);
-	// 	return $destination;
-	// }
 
 	function get_user_all_data()
 	{
 		$query = "
-		SELECT * FROM users 
-		";
+		SELECT * FROM users";
 
 		$statement = $this->connect->prepare($query);
 		$statement->execute();
@@ -343,7 +351,52 @@ class User
 
 		return $data;
 	}
+	function update_user_status(){
+		$query = "
+		UPDATE users 
+			SET user_status = :user_status  
+			WHERE user_id = :user_id
+		";
+		$statement = $this->connect->prepare($query);
+		$statement->bindParam(':user_status', $this->user_status);
+		$statement->bindParam(':user_id', $this->user_id);
+		if($statement->execute()){
+			return true;
+		}else {
+			return false;
+		}
+	}
+
+	// function update_user_time(){
+	// 	$query = "
+	// 	UPDATE users 
+	// 		SET last_login = :last_login  
+	// 		WHERE user_id = :user_id
+	// 	";
+	// 	$statement = $this->connect->prepare($query);
+	// 	$statement->bindParam(':last_login', $this->last_login);
+	// 	$statement->bindParam(':user_id', $this->user_id);
+	// 	if($statement->execute()){
+	// 		return true;
+	// 	}else {
+	// 		return false;
+	// 	}
+	// }
+
 	
+	// function user_status(){
+	// 	$query = "
+	// 	SELECT user_status 
+	// 		FROM users";
+	// 	$statement = $this->connect->prepare($query);
+	// 	$statement->bindParam(':user_status', $this->user_status);
+	// 	$statement->bindParam(':user_id', $this->user_id);
+	// 	if($statement->execute()){
+	// 		return true;
+	// 	}else {
+	// 		return false;
+	// 	}
+	// }
 	
 }
 ?>

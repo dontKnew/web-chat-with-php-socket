@@ -1,10 +1,10 @@
 <?php
-    session_start();
+    require_once('../database/UserClass.php');
+    define('TITLE', 'Profile'); 
     if (!isset($_SESSION['isLogged'])) {
-        header('location:./');
+        header('location:../login/');
     }
     if(isset($_REQUEST['submit'])){
-        require_once('./database/UserClass.php');
         $user_object = new User;
         
         $name = trim($_POST['fullname']);
@@ -16,7 +16,9 @@
         
         if($profile['name'] != '') {
             if($user_profile = $user_object->move_image($profile)){
-                 
+                if(file_exists($user_data['user_profile'])){
+                    unlink($user_data['user_profile']);
+                }
             }else {
                 $error_message = "User Image could not moved";
             }
@@ -40,7 +42,7 @@
     }
 
 ?>
-<?php include('./include/header.php'); ?>
+<?php include('../include/header.php'); ?>
 <section style="background-color: #eee;">
     <div class="container py-2">
         <div class="row d-flex justify-content-center">
@@ -58,8 +60,8 @@
                         } ?>
                         <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" enctype="multipart/form-data">
                         <div class="d-flex flex-column align-items-center justify-content-center mb-4">
-                            <img src="<?php echo $_SESSION['user_data']['user_profile'];?>" alt="profile" class="shadow-lg rounded-circle img-fluid mb-2" width="120" height="120">
-                            <input type="file" name="profile" class="form-control form-control-sm w-50 text-center" id="customFile" />
+                            <img src="<?php echo $_SESSION['user_data']['user_profile'];?>" alt="profile" id="profilePreview" class="rounded-circle img-fluid mb-2" width="130" height="130">
+                            <input type="file" name="profile" class="form-control form-control-sm w-50 text-center" id="profileImage" accept="image/" />
                         </div>
                             <div class="form-outline mb-4 text-center">
                                 <input type="button" name="fullname" class="btn btn-dark" value="<?php if(strtoupper($_SESSION['user_data']['user_activation'])=="ENABLE") {echo "Account Status : Acitve"; }else{echo "Account Status-Disabled";} ?>" readonly required />
@@ -91,4 +93,4 @@
     </div>
     </div>
 </section>
-<?php include('./include/footer.php') ?>
+<?php include('../include/footer.php') ?>

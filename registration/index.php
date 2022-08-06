@@ -1,10 +1,9 @@
 <?php
-  require_once './database/UserClass.php';
-  require_once './database/MailClass.php';
-  session_start();
-
+  require_once '../database/UserClass.php';
+  require_once '../database/MailClass.php';
+    define('TITLE', 'Registration');
   if(isset($_SESSION['email'])){
-    header("location:chat.php");
+    header("location:../group/");
   }
 
   if(isset($_REQUEST['submit'])){
@@ -20,7 +19,7 @@
     $user_object->setUserPassword($password);
     $user_object->setUserActivation("Disabled");
     // $user_object->setUserProfile($user_object->make_avatar(strtoupper($name[0])));
-    $user_object->setUserProfile("./public/image/avtar.webp");
+    $user_object->setUserProfile("".getenv("ROOT_PATH")."/assets/image/avtar.webp");
     $user_object->setUserVerificationCode(md5(uniqid()));
     $user_data = $user_object->get_user_data_by_email();
     if(is_array($user_data) && count($user_data) > 0)
@@ -30,11 +29,11 @@
       // if($user_object->save_data()){
           $mail = new Mailer;
           $mail->smtp = "smtp.gmail.com";
-          $mail->fromEmail = "YourGmail";
-          $mail->fromPassword = "Your gmail app password"; // Please do not mentioned original password,if mentioned, it will not work. 
-          $mail->fromName = 'Sajid Ali';
+          $mail->fromEmail = getenv("GMAIL");
+          $mail->fromPassword = getenv("APP_PASSWORD"); // Please do not mentioned original password,if mentioned, it will not work. 
+          $mail->fromName = getenv("NAME");
           $mail->toEmail = $user_object->getUserEmail();
-          $verifyUrl = 'http://' . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"].'index.php?code=' .$user_object->getUserVerificationCode();
+          $verifyUrl = ''.getenv("ROOT_PATH").'/login/?code=' .$user_object->getUserVerificationCode();
           $mail->subject = "Registration Verification for Chat Application Demo";
           $msg = '<p>Thank you for registering for Chat Application Demo.</p>
               <p>This is a verification email, please click the link to verify your email address.</p>
@@ -60,7 +59,7 @@
     }
   }
 ?>
-<?php include('./include/header.php'); ?>
+<?php include('../include/header.php'); ?>
   <section style="background-color: #eee;">
     <div class="container py-5">
 
@@ -96,7 +95,7 @@
             <!-- Submit button -->
             <div class="mb-4">
               <button name="submit" class="btn btn-success btn-block">Create</button><br>
-              <span class="mx-4">Already have an account ?<a href="./" > <u> click here </u></a></span>
+              <span class="mx-4">Already have an account ?<a href="../login/" > <u> click here </u></a></span>
             </div>
             </form>
           </div>
@@ -105,4 +104,4 @@
     </div>
     </div>
   </section>
-<?php include('include/footer.php') ?>
+<?php include('../include/footer.php') ?>

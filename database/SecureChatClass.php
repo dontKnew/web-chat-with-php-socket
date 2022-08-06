@@ -1,7 +1,5 @@
 <?php
 
-//PrivateChat.php
-
 class SecureChat
 {
 	private $secure_chat_id;
@@ -124,6 +122,26 @@ class SecureChat
 		$statement->execute();
 
 		return $this->connect->lastInsertId();
+	}
+
+	
+
+	function change_chat_status(){
+		$query = "
+		UPDATE chat_message 
+			SET status = 'Yes' 
+			WHERE from_user_id = :from_user_id 
+			AND to_user_id = :to_user_id 
+			AND status = 'No'
+		";
+
+		$statement = $this->connect->prepare($query);
+
+		$statement->bindParam(':from_user_id', $this->from_user_id);
+
+		$statement->bindParam(':to_user_id', $this->to_user_id);
+
+		$statement->execute();
 	}
 
 }

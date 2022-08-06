@@ -1,14 +1,13 @@
 <?php
-  session_start();
-
+  require_once '../database/UserClass.php'; 
+  define('TITLE', 'Forget Password');
+  
   if(isset($_SESSION['email'])){
-    header("location:chat.php");
+    header("location:../group/");
   }
 
   if(isset($_REQUEST['submit'])){
     $email = trim($_POST['email']); 
-
-  require_once './database/UserClass.php'; 
     $user_object = new User;
     $user_object->setUserEmail($email);
     $user_data = $user_object->get_user_data_by_email();
@@ -17,23 +16,23 @@
     $user_object->setUserPassword($user_data['user_password']);
     $user_object->setUserActivation($user_data['user_activation']);
     $user_object->setUserProfile($user_data['user_profile']);
-    $user_object->setUserVerificationCode(md5(uniqid()));
-    
+    $user_object->setUserVerificationCode($user_data['user_verification_code']);
+
     if($user_object->update_data()){
         if(is_array($user_data) && count($user_data) > 0){
             
-          require_once './database/converter.php';
+            require_once '../database/converter.php';
             $converter = new Converter;
             $secureEmail = $converter->stringToBinary($email);
           
-            require_once './database/MailClass.php';
+            require_once '../database/MailClass.php';
             $mail = new Mailer;
             $mail->smtp = "smtp.gmail.com";
-            $mail->fromEmail = "sajid320.sa@gmail.com";
-            $mail->fromPassword = "Your gmail app password"; // Please do not mentioned original password,if mentioned, it will not work. 
-            $mail->fromName = 'Sajid Ali';
+            $mail->fromEmail = getenv("GMAIL");
+            $mail->fromPassword = getenv("APP_PASSWORD"); // Please do not mentioned original password,if mentioned, it will not work. 
+            $mail->fromName = getenv("NAME");
             $mail->toEmail = $user_object->getUserEmail();
-            $verifyUrl = 'http://' . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"].'changepassword.php?user='.$secureEmail.'&code=' .$user_object->getUserVerificationCode();
+            $verifyUrl = ''.getenv("ROOT_PATH").'change-pass/?user='.$secureEmail.'&code=' .$user_object->getUserVerificationCode();
             $mail->subject = "Forget password for Chat Application";
             $msg = '
                 <p>This is a forget password of chat application email, please click the link to change your of '.$email.'.</p>
@@ -58,7 +57,7 @@
     }
 }
 ?>
-<?php include('./include/header.php'); ?>
+<?php include('../include/header.php'); ?>
   <section style="background-color: #eee;">
     <div class="container py-5">
 
@@ -97,4 +96,4 @@
     </div>
   </section>
   
-  <?php include('include/footer.php') ?>
+  <?php include('../include/footer.php') ?>

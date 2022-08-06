@@ -1,27 +1,23 @@
 <?php
-/*Testing
-Code : 31d660814976a342d8bc3011f5e6ceeb
-user : 1101001 1110011 1110010 1100001 1100110 1101001 1101100 110001 110010 110011 101110 1110011 1100001 1000000 1100111 1101101 1100001 1101001 1101100 101110 1100011 1101111 1101101
-url : /http://localhost/PHP/socket/web-chat/chat/changepassword.php?user=1101001%201110011%201110010%201100001%201100110%201101001%201101100%20110001%20110010%20110011%20101110%201110011%201100001%201000000%201100111%201101101%201100001%201101001%201101100%20101110%201100011%201101111%201101101&code=31d660814976a342d8bc3011f5e6ceeb
-*/
-    session_start();
+    
+    require_once '../database/UserClass.php';
+    define('TITLE', 'Change Password');
+    
     if(!isset($_SESSION['isLogged'])){
-        header("location:login.php");
+        header("location:../login/");
     }
-    require_once './database/converter.php';
+    require_once '../database/converter.php';
     if(isset($_REQUEST['submit'])){
         $email = trim($_POST['email']); 
         $password = trim($_POST['password']);
         $password1 = trim($_POST['password1']);
         $password2 = trim($_POST['password2']);
-         
-        require_once './database/UserClass.php';
+        
         $user_object = new User;
         $user_object->setUserEmail($email);
         $user_data = $user_object->get_user_data_by_email();
         $user_object->setUserName($user_data['user_name']);
         $user_object->setUserId($user_data['user_id']);
-        // $user_object->setUserPassword($user_data['user_password']);
         $user_object->setUserActivation($user_data['user_activation']);
         $user_object->setUserProfile($user_data['user_profile']);
         $user_object->setUserVerificationCode($user_data['user_verification_code']);
@@ -42,7 +38,7 @@ url : /http://localhost/PHP/socket/web-chat/chat/changepassword.php?user=1101001
         }
     }
 ?>
-<?php include('./include/header.php'); ?>
+<?php include('../include/header.php'); ?>
   <section style="background-color: #eee;">
     <div class="container py-5">
 
@@ -88,4 +84,4 @@ url : /http://localhost/PHP/socket/web-chat/chat/changepassword.php?user=1101001
 
     </div>
   </section>
-<?php include('include/footer.php') ?>
+<?php include('../include/footer.php') ?>

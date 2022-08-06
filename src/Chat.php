@@ -2,7 +2,6 @@
 namespace MyApp;
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
-
 // require_once('../database/ChatRoomClass.php');
 // require_once('../database/UserClass.php');
 require dirname(__DIR__) . '/database/UserClass.php';
@@ -11,16 +10,18 @@ require dirname(__DIR__) . '/database/SecureChatClass.php';
 
 class Chat implements MessageComponentInterface {
     protected $clients;
+    protected $userid;
 
     public function __construct() {
         $this->clients = new \SplObjectStorage;
-        echo "Server Started";
+        echo "server started";
     }
 
     public function onOpen(ConnectionInterface $conn) {
         // Store the new connection to send messages to later
         $this->clients->attach($conn);
         echo "New connection! ({$conn->resourceId})\n";
+
     }
 
     public function onMessage(ConnectionInterface $from, $msg) {
@@ -31,7 +32,6 @@ class Chat implements MessageComponentInterface {
             $data = json_decode($msg, true);
 
             if($data['chatType']=="secure"){
-                
                 $chat_object = new \SecureChat();
                 $chat_object->setToUserId($data['to_user_id']);
                 $chat_object->setFromUserId($data['from_user_id']);
@@ -71,13 +71,16 @@ class Chat implements MessageComponentInterface {
     public function onClose(ConnectionInterface $conn) {
         // The connection is closed, remove it, as we can no longer send it messages
         $this->clients->detach($conn);
-
         echo "Connection {$conn->resourceId} has disconnected\n";
+        
+        // $user_object = new \User;
+        // $user_object->setUserId($_SESSION['user_data']['user_id']);
+        // $user_object->setUserStatus("online");
+        // $user_object->update_user_status();
     }
 
     public function onError(ConnectionInterface $conn, \Exception $e) {
         echo "An error has occurred: {$e->getMessage()}\n";
-
         $conn->close();
     }
 }

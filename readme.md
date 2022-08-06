@@ -1,30 +1,37 @@
-<!-- http://web.archive.org/web/20220520111903/http://socketo.me/ toutrial -->
-
-# Web-Chat-Room  
+# Web-Chat Application with ratchet library
 - I have made simple web-chat-room  project with php ratchet library 
 - This is very simple and anyone can easily understand this project.
 
 ## Project Features
-1. User registration can be only with original gmail. 
-2. Login
-3. Chat Dashbord 
-4. Group Chat 
-5. forget password with phpmailer
-6. User to User chat
-7. View of any user Profile
-      =>
-        1. user message encriyption 
-        2. double tick mark
-        3. user list online status
+1. User registration with email verification. 
+2. Login Page
+3. forget password with email verification
+4. Chat Dashbord 
+5. Group Chat
+6. Personal Chat 
+7. View User Profile
+8. normal login and logout
+9. Profile Update
+10. Change Password
+11. Easy Setup Project with .env file
 
+=> New Feature will coming soon
+- read and unread message
+- real time online and offline status
+- user messages encriyption
+- Admin Management (if have time)
 
 ## Project Setup : 
 1. create database in the name of => socket-chat-app2
 2. import database from chat/database/socket-chat-app2.sql to your mysql server/phpmyadmin
-3. setup phpMailer for original gmail registration in fie index.php line around 32 to 36 and if dont kenw how to generate app password in gmail  <a href="https://www.youtube.com/watch?v=HLwTCmiNGFQ"> click here </a>
+3. remove dot extension from .env to env and setupt database configuration, php mail configuration and project root path
 4. open command terminal and start ratchet server from root of chat application command : php bin/server.php or php -f bin/server.php 
-5. now you can checkout browser http://localhost/PHP/Your-Path/chat/
+5. now you can checkout browser http://localhost/Your-Path/projectFolder/
 
+## FAQ 
+- How to generate app password in gmail account <a href="https://www.youtube.com/watch?v=HLwTCmiNGFQ"> click here </a>
+- What is root 
+- 
 ### Credentials
 Email : kamina@gmail.com
 Password : 1234
@@ -35,9 +42,12 @@ Password : 1234
 <img src="https://github.com/dontKnew/web-chat-with-php-socket/blob/master/public/image/screenshot/register.png"/>
 <img src="https://github.com/dontKnew/web-chat-with-php-socket/blob/master/public/image/screenshot/changepassword.png"/>
 <img src="https://github.com/dontKnew/web-chat-with-php-socket/blob/master/public/image/screenshot/forget.png"/>
-<img src="https://github.com/dontKnew/web-chat-with-php-socket/blob/master/public/image/screenshot/chatroom1.png"/>
+<img src="https://github.com/dontKnew/web-chat-with-php-socket/blob/master/public/image/screenshot/group.png"/>
 <img src="https://github.com/dontKnew/web-chat-with-php-socket/blob/master/public/image/screenshot/userprofile.png"/>
 <img src="https://github.com/dontKnew/web-chat-with-php-socket/blob/master/public/image/screenshot/personalchat.png"/>
+
+
+### <a href="http://web.archive.org/web/20220520111903/http://socketo.me/"> RATCHET LIBRARY DOCUMENTATION </a>
 
 
 ### For More details email to israfil123.sa@gmail.com or contact us

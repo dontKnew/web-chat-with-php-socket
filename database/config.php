@@ -1,13 +1,13 @@
 <?php
-
-//Database_connection.php
+require_once 'converter.php';
 
 class Database_connection
 {
 	function connect()
 	{
-		$connect = new PDO("mysql:host=localhost; dbname=socket-chat-app2", "root", "");
-
+		$env = new DotEnv('../.env');
+ 		$env->load();
+		$connect = new PDO( "mysql:host=".getenv('DATABASE_HOST')."; dbname=".getenv('DATABASE_NAME')."", getenv('DATABASE_USER'),getenv('DATABASE_PASSWORD'));
 		return $connect;
 	}
 }

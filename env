@@ -1,0 +1,17 @@
+# DIRECTORY
+    ROOT_PATH = http://localhost/PHP/socket/web-chat/my/
+
+# PHP Mail Configuration
+    GMAIL = example@gmail.com
+    APP_PASSWORD = foolrdkwskzcasue
+    NAME = SAJID ALI
+
+# DATABASE CONFIGURATION
+    DATABASE_HOST = localhost 
+    DATABASE_NAME = socket-chat-app2
+    DATABASE_USER = root
+    DATABASE_PASSWORD = 
+
+
+
+
