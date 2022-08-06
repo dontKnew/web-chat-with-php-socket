@@ -38,13 +38,13 @@ Password : 1234
 
 ## Demo Pictures
 
-<img src="https://github.com/dontKnew/web-chat-with-php-socket/blob/master/public/image/screenshot/login.png"/>
-<img src="https://github.com/dontKnew/web-chat-with-php-socket/blob/master/public/image/screenshot/register.png"/>
-<img src="https://github.com/dontKnew/web-chat-with-php-socket/blob/master/public/image/screenshot/changepassword.png"/>
-<img src="https://github.com/dontKnew/web-chat-with-php-socket/blob/master/public/image/screenshot/forget.png"/>
-<img src="https://github.com/dontKnew/web-chat-with-php-socket/blob/master/public/image/screenshot/group.png"/>
-<img src="https://github.com/dontKnew/web-chat-with-php-socket/blob/master/public/image/screenshot/userprofile.png"/>
-<img src="https://github.com/dontKnew/web-chat-with-php-socket/blob/master/public/image/screenshot/personalchat.png"/>
+<img src="https://github.com/dontKnew/web-chat-with-php-socket/blob/master/assets/image/screenshot/login.png"/>
+<img src="https://github.com/dontKnew/web-chat-with-php-socket/blob/master/assets/image/screenshot/register.png"/>
+<img src="https://github.com/dontKnew/web-chat-with-php-socket/blob/master/assets/image/screenshot/changepassword.png"/>
+<img src="https://github.com/dontKnew/web-chat-with-php-socket/blob/master/assets/image/screenshot/forget.png"/>
+<img src="https://github.com/dontKnew/web-chat-with-php-socket/blob/master/assets/image/screenshot/group.png"/>
+<img src="https://github.com/dontKnew/web-chat-with-php-socket/blob/master/assets/image/screenshot/userprofile.png"/>
+<img src="https://github.com/dontKnew/web-chat-with-php-socket/blob/master/assets/image/screenshot/personalchat.png"/>
 
 
 ### <a href="http://web.archive.org/web/20220520111903/http://socketo.me/"> RATCHET LIBRARY DOCUMENTATION </a>
